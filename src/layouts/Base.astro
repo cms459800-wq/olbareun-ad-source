@@ -1,0 +1,44 @@
+---
+import '../styles.css';
+const { title, description, active = '' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const verification = process.env.NAVER_SITE_VERIFICATION;
+const links = [
+  { href: '/', label: '홈', key: 'home' },
+  { href: '/planning/', label: '광고 기획', key: 'planning' },
+  { href: '/channels/', label: '채널 선택', key: 'channels' },
+  { href: '/measurement/', label: '성과 점검', key: 'measurement' },
+  { href: '/about/', label: '사이트 소개', key: 'about' },
+];
+---
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    {verification && <meta name="naver-site-verification" content={verification} />}
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:site_name" content="올바른광고" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip" href="#main">본문 바로가기</a>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="/" aria-label="올바른광고 홈"><span class="brand-mark" aria-hidden="true">O.</span><span>올바른광고</span></a>
+        <nav aria-label="주요 메뉴"><ul>{links.map(link => <li><a href={link.href} aria-current={active === link.key ? 'page' : undefined}>{link.label}</a></li>)}</ul></nav>
+      </div>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer"><div class="wrap footer-inner"><div><strong>올바른광고</strong><p>광고를 시작하고 점검할 때 필요한 기준을 정리합니다.</p></div><nav aria-label="하단 메뉴"><a href="/planning/">광고 기획</a><a href="/channels/">채널 선택</a><a href="/measurement/">성과 점검</a><a href="/about/">사이트 소개</a></nav></div></footer>
+  </body>
+</html>
