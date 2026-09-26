@@ -13,6 +13,6 @@ npm ci
 npm run build
 ```
 
-배포 도메인이 확정되면 `SITE_URL=https://도메인`을 Vercel 환경 변수로 설정하세요. 설정하지 않으면 Vercel의 프로젝트 프로덕션 URL을 사용합니다. 시스템 환경 변수가 비활성화된 배포에서는 `SITE_URL` 설정이 필수입니다. 로컬 빌드는 `http://localhost:4321`을 사용합니다. 도메인 변경 후 다시 빌드해야 canonical, robots.txt, sitemap-index.xml에 반영됩니다.
+대표 주소는 `https://seoyo.kr`로 설정했습니다. `SITE_URL` 환경 변수로 다른 대표 주소를 지정할 수 있습니다. 도메인을 변경한 뒤 다시 빌드하면 canonical, robots.txt, sitemap-index.xml에 반영됩니다.
 
 네이버 소유 확인 값이 발급되면 `NAVER_SITE_VERIFICATION` 환경 변수에 태그의 `content` 값만 설정하고 다시 배포하세요. 실제 업체 정보, 연락처와 서비스 범위가 확정되기 전에는 임의로 기재하지 않았습니다.
